@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Department</title>
+</head>
+<body>
+    <a th:href="@{/list-department}">Back to list Department</a>
+    <table border="1px">
+        <tr>
+            <td>
+            </td>
+            <td>
+                <span th:text="${departments.getName()}"></span>
+            </td>
+        </tr>
+        <tr th:each="employee:${employees}">
+            <td>
+                <strong>Name: </strong>
+            </td>
+            <td>
+                <span th:text="${employee.getName()}"></span>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee</title>
+</head>
+<body>
+    <center>
+        <h2 style="color: bisque;">Edit Employee</h2>
+    </center>
+    <a th:href="@{/list-employee}">Back to list Employee</a>
+        <form th:action="@{/edit-employee}" method="post" th:object="${employeeForm}" enctype="multipart/form-data">
+            <table>
+            <tr>
+                <td>Id</td>
+                <td><input type="text" th:field="*{id}"></td>
+            </tr>
+            <tr>
+                <td>Name</td>
+                <td><input type="text" th:field="*{name}"></td>
+            </tr>
+            <tr>
+                <td>Address</td>
+                <td><input type="text" th:field="*{address}"></td>
+            </tr>
+            <tr>
+                <td>Float</td>
+                <td><input type="text" th:field="*{salary}"></td>
+            </tr>
+            <tr>
+                <td>BirthDay</td>
+                <td><input type="date" th:field="*{birthDate}"></td>
+            </tr>
+            <tr>
+                <td>Department</td>
+                <td>
+                    <select th:field="*{department}">
+                        <option th:each="p:${departments}" th:value="${p.id}" th:text="${p.name}" ></option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Avatar</td>
+                <td><img style="width: 100px; height: 100px" th:src="@{'/i/' + ${employee.getImage()}}"></td>
+
+            </tr>
+            <tr>
+                <td><input type="file" th:field="*{avatar}"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" value="Save"></td>
+            </tr>
+            </table>
+        </form>
+
+</body>
+</html>

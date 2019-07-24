@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee</title>
+</head>
+<body>
+    <center>
+        <h2>Detail Employee</h2>
+    </center>
+<div>
+    <table style="border: 1px">
+        <strong>Name: </strong><span th:text="${employeeFind.name}"></span><br>
+        <strong>Address: </strong><span th:text="${employeeFind.address}"></span><br>
+        <strong>BirthDate: </strong><span th:text="${employeeFind.birthDate}"></span><br>
+        <strong>Department: </strong><span th:text="${employeeFind.department.name}"></span><br>
+        <img style="width: 150px; height: 150px" th:src="@{'/i/' + ${employeeFind.getImage()}}"><br>
+    </table>
+    <a th:href="@{/list-employee}">Back to list</a>
+</div>
+</body>
+</html>

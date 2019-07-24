@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <center>
+        <h2>List Employee</h2>
+        <form th:action="@{/search-employee}" method="post">
+            <input type="text" name="search">
+            <input type="submit" value="Search">
+        </form>
+        <a th:href="@{/create}">Create Employee</a>
+    </center>
+
+    <div >
+        <div th:each="employe:${employees}" style="float: left; margin: 10px">
+            <table style="border: 1px">
+                <strong>Name: </strong><span th:text="${employe.name}"></span><br>
+                <strong>Address: </strong><span th:text="${employe.address}"></span><br>
+                <strong>BirthDate: </strong><span th:text="${employe.birthDate}"></span><br>
+                <strong>Salary: </strong><span th:text="${employe.salary}"></span><br>
+                <strong>Department: </strong><span th:text="${employe.department.name}"></span><br>
+                <img style="width: 150px; height: 150px" th:src="@{'/i/' + ${employe.getImage()}}"><br>
+                <strong>
+                    <a th:href="@{/edit/__${employe.getId()}__}">Edit</a>
+                    <a th:href="@{/detail/__${employe.getId()}__}">Detail</a>
+                    <a th:href="@{/delete/__${employe.getId()}__}">Delete</a>
+                </strong>
+            </table>
+        </div>
+
+    </div>
+        <!--        hien thi cac page-->
+        <div>
+            <a th:href="@{'/list-employee'(page=${employees.number - 1})}" th:if="${employees.hasPrevious()}">Previous</a>
+            <span th:text="${employees.number + 1}"></span>/<span th:text="${employees.totalPages}"></span>
+            <a th:href="@{'/list-employee'(page=${employees.number + 1})}" th:if="${employees.hasNext()}">Next</a>
+        </div>
+</body>
+</html>
